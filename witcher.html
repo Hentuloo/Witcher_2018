@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+        }
+        .preload{
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100vh;
+            background-color: black;
+            z-index: 100;
+            transition: opacity 0.2s linear;
+            color: white;
+            font-size: 18px;
+        }
+        .preload img{
+            max-width: 100%;
+        }
+        .preload.show-preloader{
+            display: flex;
+        }
+
+        header {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        header img {
+            position: absolute;
+            min-width: 100%;
+            min-height: 100%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s linear;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        header img:last-child {
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .button {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(20, 20, 20, 0.658);
+            border: 1px solid rgb(255, 255, 255);
+            position: fixed;
+            bottom: 10%;
+            background-image: url(ds.png);
+            background-repeat: no-repeat;
+            background-size: auto 65px;
+            padding: 14px;
+            border-radius: 50%;
+            z-index: 2;
+
+        }
+
+        .button:nth-of-type(1) {
+            bottom: 10%;
+            left: 10%;
+            background-position: -331px 16px;
+        }
+
+        .button:nth-of-type(2) {
+            bottom: 16%;
+            left: 27%;
+            background-position: -247px 20px;
+        }
+
+        .button:nth-of-type(3) {
+            bottom: 22%;
+            left: calc(50% - 55px);
+            background-position: 14px 9px;
+        }
+
+        .button:nth-of-type(4) {
+            bottom: 16%;
+            right: 27%;
+            background-position: -73px;
+        }
+
+        .button:nth-of-type(5) {
+            right: 10%;
+            background-position: -163px 9px;
+        }
+
+        img:last-child.last_image_opacity {
+            opacity: 0;
+        }
+
+        .image-active {
+            opacity: 1;
+        }
+
+        .btn-active {
+            background-color: rgb(95, 95, 95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="preload">
+            <img src="witcher-medal.png" alt="witcher medal"/>
+            <h3>Loading...</h3>
+    </div>
+    <header>
+        <img src="aard.png" alt="witcher Aard">
+        <img src="axii.jpg" alt="witcher Axii">
+        <img src="igni.png" alt="witcher Igni">
+        <img src="quen.png" alt="witcher Quen">
+        <img src="yrden.png" alt="witcher Yrden">
+        <img src="p0.png" alt="witcher start panel">
+    </header>
+    <nav>
+        <div class="button"></div>
+        <div class="button"></div>
+        <div class="button"></div>
+        <div class="button"></div>
+        <div class="button"></div>
+    </nav>
+    <script>
+        //preloader
+       var preload = document.getElementsByClassName('preload')[0];
+
+        preload.classList.add('show-preloader');
+        window.addEventListener('load', function () {
+            preload.classList.remove('show-preloader');
+        });
+        
+        //buttons
+        var images = document.querySelectorAll("img")
+        var buttons = document.querySelectorAll(".button")
+        buttons.forEach(function (e, v) {
+            e.addEventListener("click", function () {
+                var active_btn = document.querySelector(".btn-active")
+                var active_image = document.querySelector(".image-active")
+                images[images.length - 1].classList.add("last_image_opacity")
+                e.classList.toggle("btn-active")
+                images[v].classList.toggle("image-active")
+                if (active_image != null) {
+                    active_image.classList.remove("image-active")
+                }
+                if (active_btn != null) {
+
+                    active_btn.classList.remove("btn-active")
+                }
+                if (active_btn == e) {
+                    images[images.length - 1].classList.remove("last_image_opacity")
+                }
+
+
+                //console.log(v);
+            })
+        })
+        
+    </script>
+</body>
+
+</html>
