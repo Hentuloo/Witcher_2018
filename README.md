@@ -1,6 +1,7 @@
 # Witcher_2018
 My old witcher 'project'
 
+I share this project available only to show my learning path.
 
 ## What i would do beter today:(i did this project in 2018)
 - navigation should be in ul>li and with some hidden titles
