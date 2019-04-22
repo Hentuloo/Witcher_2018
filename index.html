@@ -17,7 +17,8 @@
             background-color: black;
             overflow: hidden;
         }
-        .preload{
+
+        .preload {
             display: none;
             flex-direction: column;
             justify-content: center;
@@ -33,14 +34,17 @@
             color: white;
             font-size: 18px;
         }
-        .preload img{
+
+        .preload img {
             max-width: 100%;
         }
-        .preload.show-preloader{
+
+        .preload.show-preloader {
             display: flex;
         }
 
         header {
+            display: block;
             position: relative;
             height: 100%;
             width: 100%;
@@ -49,7 +53,7 @@
 
         header img {
             position: absolute;
-            max-width: 100%;
+            min-width: 100%;
             min-height: 100%;
             left: 50%;
             top: 50%;
@@ -77,7 +81,6 @@
             padding: 14px;
             border-radius: 50%;
             z-index: 2;
-
         }
 
         .button:nth-of-type(1) {
@@ -120,13 +123,18 @@
         .btn-active {
             background-color: rgb(95, 95, 95);
         }
+          @media only screen and (max-width: 800px){
+              header img{
+                  transform: translate(-50%,-50%) scaleX(0.7);
+              }
+          }
     </style>
 </head>
 
 <body>
     <div class="preload">
-            <img src="witcher-medal.png" alt="witcher medal"/>
-            <h3>Loading...</h3>
+        <img src="witcher-medal.png" alt="witcher medal" />
+        <h3>Loading...</h3>
     </div>
     <header>
         <img src="yrden.png" alt="witcher Yrden">
@@ -145,13 +153,12 @@
     </nav>
     <script>
         //preloader
-       var preload = document.getElementsByClassName('preload')[0];
-
+        var preload = document.getElementsByClassName('preload')[0];
         preload.classList.add('show-preloader');
         window.addEventListener('load', function () {
             preload.classList.remove('show-preloader');
         });
-        
+
         //buttons
         var images = document.querySelectorAll("header img")
         var buttons = document.querySelectorAll(".button")
@@ -166,18 +173,15 @@
                     active_image.classList.remove("image-active")
                 }
                 if (active_btn != null) {
-
                     active_btn.classList.remove("btn-active")
                 }
                 if (active_btn == e) {
                     images[images.length - 1].classList.remove("last_image_opacity")
                 }
-
-
                 //console.log(v);
             })
         })
-        
+
     </script>
 </body>
 
